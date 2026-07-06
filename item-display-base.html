@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Item Display</title>
+    <script src="item-list.js"></script>
+    <style>
+      
+
+      body {
+        background: #fff;
+        padding: 40px;
+        font-size: 20px;
+      }
+
+      .prop-row {
+        display: flex;
+        padding: 5px 0;
+      }
+
+      .prop-name {
+        width: 150px;
+        font-weight: bold;
+        padding-right: 20px;
+      }
+
+      select {
+        width: 260px;
+        padding: 8px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div>
+        <h2>Item Display</h2>
+      </div>
+      <div>
+        <select name="item-list" id="item-list" class="select" onchange="testchange(event)" ></select>
+      </div>
+      <hr />
+      <div class="prop-row">
+        <div class="prop-name">ID</div>
+        <div id="item-id"></div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">Name</div>
+        <div id="item-name"></div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">Category</div>
+        <div id="item-category"></div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">Inventory Amt</div>
+        <div id="item-inventory"></div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">List price</div>
+        <div id="item-price"></div>
+      </div>
+    </div>
+    <script>
+      let optionHtml = `<option value= "none" selected disabled>Select Item..</option>`;
+      for (let i = 0; i < items.length; i++){
+        optionHtml += `<option value= "${items[i].id}"> ${items[i].name}</option>`
+      }
+      
+      const ID = document.getElementById("item-id")
+      const name = document.getElementById("item-name")
+      const category = document.getElementById("item-category")
+      const Inventory_Amt = document.getElementById("item-inventory")
+      const List_price = document.getElementById("item-price")
+
+
+      function testchange(event){
+        console.log(event.target.value)
+        name.innerHTML = items[event.target.value-1].name
+        category.innerHTML = items[event.target.value-1].category
+        Inventory_Amt.innerHTML = items[event.target.value-1].inventory
+        List_price.innerHTML = items[event.target.value-1].price
+        ID.innerHTML = items[event.target.value-1].id
+      }
+
+      document.getElementById("item-list").innerHTML = optionHtml
+
+    </script>
+  </body>
+</html>
